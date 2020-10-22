@@ -8,6 +8,6 @@ RSpec.describe CarComputer, type: :model do
   end
 
   context 'associations' do
-    it { expect(car_computer).to respond_to(:cars) }
+    it { expect(car_computer).to respond_to(:car) }
   end
 end

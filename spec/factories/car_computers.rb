@@ -2,6 +2,8 @@
 
 FactoryBot.define do
   factory :car_computer do
+    car
+
     defected_part { nil }
 
     trait :with_defect do

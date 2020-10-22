@@ -7,6 +7,7 @@ class Car < ApplicationRecord
 
   has_one :car_computer
   belongs_to :car_model
+  belongs_to :factory_stock, optional: true
 
   validates :year, numericality: true, inclusion: { in: 1960..2020 }
 

@@ -9,6 +9,8 @@ RSpec.describe Car, type: :model do
 
   context 'associations' do
     it { expect(car).to respond_to(:car_model) }
+    it { expect(car).to respond_to(:car_computer) }
+    it { expect(car).to respond_to(:factory_stock) }
   end
 
   context 'with defects' do
