@@ -8,6 +8,9 @@ ruby '2.7.2'
 # Framework
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 
+# Framework extensions
+gem 'aasm'
+
 # Paws
 gem 'puma', '~> 4.1'
 
