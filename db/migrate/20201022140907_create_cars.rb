@@ -6,6 +6,7 @@ class CreateCars < ActiveRecord::Migration[6.0]
       t.integer :year, null: false, limit: 2
 
       t.integer :wheels, limit: 2
+      t.integer :seats, limit: 2
       t.integer :chassis, limit: 2
       t.integer :laser, limit: 2
       t.integer :computer, limit: 2

@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class Car < ApplicationRecord
+  PARTS = %w[wheels chassis laser computer engine seats].freeze
+
   include AASM
 
+  has_one :car_computer
   belongs_to :car_model
 
   validates :year, numericality: true, inclusion: { in: 1960..2020 }
@@ -30,11 +33,21 @@ class Car < ApplicationRecord
     end
 
     event :complete do
-      transitions from: :painting_and_final_details, to: :complete
+      transitions from: :painting_and_final_details, to: :complete do
+        guard { !any_defect? }
+      end
     end
 
     event :fail do
-      transitions from: %i[new basic_structure electronic_devices painting_and_final_details], to: :damaged
+      transitions to: :damaged, guard: :any_defect?
     end
+  end
+
+  private
+
+  def any_defect?
+    return false if car_computer&.defected_part.blank?
+
+    true
   end
 end
