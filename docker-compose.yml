@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  robot-world:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        RUBY_VERSION: '2.7.2'
+        PG_MAJOR: '13'
+        BUNDLER_VERSION: '1.17.3'
+    image: robot-world:1.0.0
+    container_name: robot-world
+    tmpfs:
+      - /tmp
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app:cached
+      - gems:/app/vendor/bundle
+      - rails_cache:/app/tmp/cache
+    environment:
+      - RAILS_ENV=${RAILS_ENV:-development}
+      - WEB_CONCURRENCY=1
+      - HISTFILE=/app/log/.bash_history
+      - EDITOR=vi
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgresql
+
+  postgresql:
+    image: postgres:13
+    container_name: postgresql
+    restart: always
+    volumes:
+      - .psqlrc:/root/.psqlrc:ro
+      - postgresql_data:/var/lib/postgresql/data
+      - ./log:/root/log:cached
+    environment:
+      - POSTGRES_PASSWORD=password
+      - PSQL_HISTFILE=/root/log/.psql_history
+    ports:
+      - 5432
+
+volumes:
+  rails_cache:
+  gems:
+  postgresql_data:
