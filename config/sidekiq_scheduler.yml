@@ -7,3 +7,7 @@ Cars::RobotBuilder::BuildJob:
 Cars::RobotBuilder::CleanCarsJob:
     cron: '10 1 * * *' # every 1d at 01:10
     queue: schedule_jobs
+
+Cars::GuardRobot::CarsTranferJob:
+  cron: '*/30 * * * *' # every 30m
+  queue: schedule_jobs

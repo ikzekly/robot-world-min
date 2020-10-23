@@ -8,6 +8,7 @@ class Car < ApplicationRecord
   has_one :car_computer, dependent: :destroy
   belongs_to :car_model
   belongs_to :factory_stock, optional: true
+  belongs_to :store_stock, optional: true
 
   validates :year, numericality: true, inclusion: { in: 1960..2020 }, allow_nil: true
 
