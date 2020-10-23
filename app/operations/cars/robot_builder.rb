@@ -7,7 +7,7 @@ module Operations
         @car = car
       end
 
-      def call # rubocop:disable Metrics/AbcSize
+      def call
         return build_basics if car.may_base_build?
         return build_electrics if car.may_build_electric?
         return build_finals if car.may_finalize?
@@ -18,7 +18,7 @@ module Operations
           car.build_car_computer(defected_part: defects_probability.defected_part)
         end
 
-        car.may_complete? ? car.complete : car.fail
+        car.may_complete? ? complete : car.fail
       end
 
       private
@@ -38,6 +38,11 @@ module Operations
       def build_finals
         car.assign_attributes(build_finals_attributes)
         car.finalize
+      end
+
+      def complete
+        car.complete
+        car.send(:broadcast, :completed, car.id)
       end
 
       def build_basic_attributes

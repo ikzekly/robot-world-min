@@ -22,6 +22,9 @@ gem 'redis'
 gem 'sidekiq'
 gem 'sidekiq-scheduler', '~> 3.0.1'
 
+# Event broadcasting
+gem 'wisper'
+
 group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
@@ -31,6 +34,7 @@ group :development, :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', '~> 1', require: false
+  gem 'wisper-rspec', require: false
 end
 
 group :test do
