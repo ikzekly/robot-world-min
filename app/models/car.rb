@@ -5,7 +5,7 @@ class Car < ApplicationRecord
 
   include AASM
 
-  has_one :car_computer
+  has_one :car_computer, dependent: :destroy
   belongs_to :car_model
   belongs_to :factory_stock, optional: true
 
@@ -18,14 +18,14 @@ class Car < ApplicationRecord
     state :electronic_devices
     state :painting_and_final_details
 
-    state :complete
-    state :damaged
+    state :completed
+    state :defected
 
     event :base_build do
       transitions from: :new, to: :basic_structure
     end
 
-    event :build_electic do
+    event :build_electric do
       transitions from: :basic_structure, to: :electronic_devices
     end
 
@@ -40,15 +40,13 @@ class Car < ApplicationRecord
     end
 
     event :fail do
-      transitions to: :damaged, guard: :any_defect?
+      transitions to: :defected, guard: :any_defect?
     end
   end
 
   private
 
   def any_defect?
-    return false if car_computer&.defected_part.blank?
-
-    true
+    car_computer&.defected_part
   end
 end

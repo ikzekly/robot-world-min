@@ -7,7 +7,7 @@ class CarModel < ApplicationRecord
     'Chevrolet Corvette', 'Volkswagen Beetle', 'Porsche Carrera GT', 'Lamborghini Diablo'
   ].freeze
 
-  has_many :cars
+  has_many :cars, dependent: :destroy
 
-  validates :name, inclusion: { in: NAMES }
+  validates :name, inclusion: { in: NAMES }, uniqueness: true
 end
