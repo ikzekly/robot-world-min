@@ -1,4 +1,85 @@
-## Foreword
+> ## The problem.
+> You know the robot buyer knows the car models he is able to buy, we want to optimize the sales, as we have lag between the factory stock and the store stock, it may happen that we don’t have stock at the store stock but we actually have brand new cars ready to be sold in the factory stock. How can we optimize the stock management? (sadly we can’t centralize the stock)
+
+## Answer
+1. When Robot-buyer wants to buy a car that we don't have on the Store Stock. We should book the same cars in the Factory Stock. And makes their priority higher than else. Thus we are able to take their earlier on the Store Stock.
+2. The next step will be forecasting, what car models will be more popular in the future. And creating a greater stock for those car models than else.
+It would be computed mathematically as the average number. Like a sum of sold cars for a time range divided on the amount forecasted time ranges.
+Also would have use for this a neural link network based on 
+[how to use ruby-FANN](https://www.honeybadger.io/blog/ruby-neural-networks)
+with paper [Online Purchase Prediction via Multi-Scale Modeling of
+Behavior Dynamics](https://xuczhang.github.io/papers/kdd19_purchase_pred.pdf). I don't have enough time for deep-diving into this paper but ruby-fann doesn't look complicated.
+
+---
+
+## Build:
+```ruby
+$ docker-compose up -d robot-world
+```
+
+## Install dependencies:
+```ruby
+$ docker-compose exec -ti robot-world bash
+$ bundle
+$ bundle exec rake db:create db:migrate
+```
+
+## Run rake
+```ruby
+$ docker-compose exec -ti robot-world bash
+$ bundle exec rake setup:car_models
+```
+
+## Create `.env` file (and actualize):
+```ruby
+$ cp .env.example .env
+```
+
+*Rails environment*
+`RAILS_ENV=development`
+
+*Postgresql config*
+```ruby
+DB_HOST=postgresql
+DB_POOL=5
+DB_PORT=5432
+
+DB_USERNAME=postgres
+DB_PASSWORD=password
+
+DB_NAME_DEV=robot_world_dev
+DB_NAME_TEST=rbot_world_test
+```
+
+*Redis for sidekiq url*
+`REDIS_SIDEKIQ_URL=redis://redis:6379/1`
+
+*Url for slack webhook*
+`SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX`
+
+*Slack requests timeout (sec)*
+`SLACK_CLIENT_TIMEOUT=60`
+
+## Running.
+###### We need to starting two applications rails-server and sidekiq.
+
+##### Run rails server:
+```ruby
+$ docker-compose exec -ti robot-world bash
+$ bundle exec rails s -b 0.0.0.0 -p 3000
+```
+
+##### Run Sidekiq:
+```ruby
+$ docker-compose exec -ti robot-world bash
+$ bundle exec sidekiq
+```
+
+## Sidekiq admin panel [http://0.0.0.0:3000/sidekiq/recurring-jobs](http://0.0.0.0:3000/sidekiq/recurring-jobs)
+
+---
+
+ ## Foreword
 First of all, thanks for taking the time to take this tech challenge. We really appreciate it. And now, are you ready to rumble? :)
 
 ## Robot World
@@ -44,14 +125,3 @@ You know the robot buyer knows the car models he is able to buy, we want to opti
 + Tests are important, we use Rspec, but mini test or another framework will do the job.
 + Don't hesitate to ask, we are here to help.
 + We use Rails and Postgres. The Postgres DB is mandatory for this challenge, but as this challenge doesn't have front-end, if you feel comfortable using plain ruby it's fine (if you decide to use a framework the only allowed is Rails). 
-
-
-
-
-
-
-
-
-
-
-
