@@ -20,7 +20,7 @@ module Cars
 
     Result = Struct.new(:distribution) do
       def defect_found?
-        MAX_PROBABILITY_RATE < distribution.values.sum(:+)
+        MAX_PROBABILITY_RATE < distribution.values.sum
       end
 
       def defected_part

@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_233755) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "car_computers", "cars"
+  add_foreign_key "car_computers", "cars", on_delete: :cascade
   add_foreign_key "cars", "car_models"
   add_foreign_key "cars", "factory_stocks"
 end

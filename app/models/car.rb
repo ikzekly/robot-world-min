@@ -34,7 +34,7 @@ class Car < ApplicationRecord
     end
 
     event :complete do
-      transitions from: :painting_and_final_details, to: :complete do
+      transitions from: :painting_and_final_details, to: :completed do
         guard { !any_defect? }
       end
     end

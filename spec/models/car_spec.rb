@@ -16,7 +16,7 @@ RSpec.describe Car, type: :model do
   context 'with defects' do
     let(:car) { build(:car, car_computer: build(:car_computer)) }
 
-    it "doesn't transition to complete" do
+    it "doesn't transition to completed" do
       expect { car.complete }.to raise_error(AASM::InvalidTransition)
     end
 
@@ -30,13 +30,13 @@ RSpec.describe Car, type: :model do
   context 'without defects' do
     let(:car) { build(:car) }
 
-    it 'transition to complete' do
+    it 'transition to completed' do
       car.base_build
       car.build_electric
       car.finalize
       car.complete
 
-      expect(car).to be_complete
+      expect(car).to be_completed
     end
 
     it "doesn't transition to defected" do

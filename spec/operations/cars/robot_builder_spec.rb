@@ -50,7 +50,7 @@ RSpec.describe Operations::Cars::RobotBuilder do
       it 'builds complete' do
         operation.call
 
-        expect(car).to be_complete
+        expect(car).to be_completed
       end
 
       context 'with defects' do

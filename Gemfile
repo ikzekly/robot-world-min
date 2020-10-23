@@ -16,6 +16,11 @@ gem 'puma', '~> 4.1'
 
 # Databases
 gem 'pg'
+gem 'redis'
+
+# Background processing
+gem 'sidekiq'
+gem 'sidekiq-scheduler', '~> 3.0.1'
 
 group :development, :test do
   gem 'dotenv-rails'
