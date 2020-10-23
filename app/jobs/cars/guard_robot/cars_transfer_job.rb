@@ -8,9 +8,7 @@ module Cars
       sidekiq_options retry: 1
 
       def perform
-        FactoryStock.transaction do
-          FactoryStock.instance.cars.update_all(store_stock_id: StoreStock.instance.id, factory_stock_id: nil)
-        end
+        FactoryStock.instance.cars.update_all(store_stock_id: StoreStock.instance.id, factory_stock_id: nil)
       end
     end
   end

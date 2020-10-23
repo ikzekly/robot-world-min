@@ -6,7 +6,7 @@ RSpec.describe Cars::RobotBuilder::CleanCarsJob do
   before do
     car_model = create(:car_model)
 
-    create_list(:car, 10, car_model: car_model)
+    FactoryStock.instance.cars << create_list(:car, 10, car_model: car_model)
   end
 
   describe '#perform' do

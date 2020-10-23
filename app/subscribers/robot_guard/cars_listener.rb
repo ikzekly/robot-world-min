@@ -7,7 +7,6 @@ module RobotGuard
     def defected(id)
       car = Car.find(id)
 
-      return unless car
       return unless car.defected?
 
       Cars::SlackNotifier.call(build_message(car))

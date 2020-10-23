@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :car_model do
-    name { CarModel::NAMES.sample }
+    sequence(:name) { |i| CarModel::NAMES[i % CarModel::NAMES.count] }
 
     trait :ford_mustang do
       name { 'Ford Mustang' }

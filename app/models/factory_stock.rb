@@ -3,9 +3,7 @@
 class FactoryStock < ApplicationRecord
   has_many :cars
 
-  before_create do
-    errors.add(:base, 'just one FactoryStock object allowed') and return false if FactoryStock.exists?
-  end
+  before_create :singleton_check
 
   def self.instance
     FactoryStock.first_or_create!
@@ -16,5 +14,13 @@ class FactoryStock < ApplicationRecord
       .where(cars: { state: :completed })
       .group('car_models.name')
       .count
+  end
+
+  private
+
+  def singleton_check
+    return unless FactoryStock.unscoped.exists?
+
+    errors.add(:base, 'just one FactoryStock object allowed')
   end
 end

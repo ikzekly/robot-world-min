@@ -8,7 +8,7 @@ RSpec.describe Order, type: :model do
   end
 
   context 'associations' do
-    it { expect(order).to respond_to(:event_logs) }
+    it { expect(order).to respond_to(:event_log) }
     it { expect(order).to respond_to(:car) }
     it { expect(order).to respond_to(:car_model) }
   end

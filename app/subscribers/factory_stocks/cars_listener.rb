@@ -7,7 +7,7 @@ module FactoryStocks
     def completed(id)
       car = Car.find(id)
 
-      return unless car
+      return unless car.completed?
 
       FactoryStock.instance.cars << car
     end
