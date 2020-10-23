@@ -12,6 +12,8 @@ AllCops:
 
 Metrics/AbcSize:
   Max: 20
+  Exclude:
+    - 'app/operations/cars/robot_builder.rb'
 
 Metrics/MethodLength:
   Max: 15
@@ -87,6 +89,9 @@ Style/HashTransformValues:
 
 Style/IfUnlessModifier:
   Enabled: false
+
+Style/ModuleFunction:
+  EnforcedStyle: extend_self
 
 Style/NumericLiterals:
   Enabled: false

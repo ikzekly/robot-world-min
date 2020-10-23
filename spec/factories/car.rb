@@ -31,5 +31,11 @@ FactoryBot.define do
     trait :completed do
       state { 'completed' }
     end
+
+    trait :defected do
+      car_computer
+
+      state { 'defected' }
+    end
   end
 end

@@ -2,7 +2,7 @@
 
 module FactoryStocks
   module CarsListener
-    module_function
+    extend self
 
     def completed(id)
       car = Car.find(id)

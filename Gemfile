@@ -25,6 +25,9 @@ gem 'sidekiq-scheduler', '~> 3.0.1'
 # Event broadcasting
 gem 'wisper'
 
+# HTTP clients
+gem 'faraday'
+
 group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'

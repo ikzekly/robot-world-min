@@ -9,7 +9,7 @@ class Car < ApplicationRecord
   belongs_to :car_model
   belongs_to :factory_stock, optional: true
 
-  validates :year, numericality: true, inclusion: { in: 1960..2020 }
+  validates :year, numericality: true, inclusion: { in: 1960..2020 }, allow_nil: true
 
   aasm column: :state do
     state :new, initial: true

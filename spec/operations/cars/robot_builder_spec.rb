@@ -53,10 +53,6 @@ RSpec.describe Operations::Cars::RobotBuilder do
         expect(car).to be_completed
       end
 
-      it 'broandcasts completed event' do
-        expect { operation.call }.to broadcast(:completed, car.id)
-      end
-
       context 'with defects' do
         let(:defect_found) { true }
 

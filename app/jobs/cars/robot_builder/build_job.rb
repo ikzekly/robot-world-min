@@ -16,6 +16,9 @@ module Cars
 
             car.save!
           end
+
+          car.send(:broadcast, :completed, car.id) if car.completed?
+          car.send(:broadcast, :defected, car.id) if car.defected?
         end
       end
     end

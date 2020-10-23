@@ -7,5 +7,6 @@ end
 Rails.application.configure do
   config.after_initialize do
     Car.subscribe(FactoryStocks::CarsListener, broadcaster: :cars)
+    Car.subscribe(RobotGuard::CarsListener, broadcaster: :cars)
   end
 end
