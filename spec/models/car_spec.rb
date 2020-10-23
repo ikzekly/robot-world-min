@@ -11,6 +11,7 @@ RSpec.describe Car, type: :model do
     it { expect(car).to respond_to(:car_model) }
     it { expect(car).to respond_to(:car_computer) }
     it { expect(car).to respond_to(:factory_stock) }
+    it { expect(car).to respond_to(:order) }
   end
 
   context 'with defects' do

@@ -42,7 +42,7 @@ module Operations
 
       def build_basic_attributes
         {
-          car_model: CarModel.find(CarModel.pluck(:id).sample),
+          car_model: CarModel.random_instance,
           year: rand(1960..2020),
           wheels: 4,
           seats: 2,

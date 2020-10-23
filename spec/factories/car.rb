@@ -6,11 +6,8 @@ FactoryBot.define do
     year { [1960, 2020].sample }
 
     trait :basic_structure do
-      car_model
-
       state { 'basic_structure' }
 
-      year { [1960, 2020].sample }
       wheels { 4 }
       seats { 2 }
       chassis { 1 }

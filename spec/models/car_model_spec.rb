@@ -9,5 +9,6 @@ RSpec.describe CarModel, type: :model do
 
   context 'associations' do
     it { expect(car_model).to respond_to(:cars) }
+    it { expect(car_model).to respond_to(:orders) }
   end
 end

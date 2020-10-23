@@ -8,6 +8,11 @@ class CarModel < ApplicationRecord
   ].freeze
 
   has_many :cars
+  has_many :orders
 
   validates :name, inclusion: { in: NAMES }, uniqueness: true
+
+  def self.random_instance
+    find(pluck(:id).sample)
+  end
 end

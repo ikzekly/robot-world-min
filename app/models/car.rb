@@ -6,6 +6,8 @@ class Car < ApplicationRecord
   include AASM
 
   has_one :car_computer, dependent: :destroy
+  has_one :order
+
   belongs_to :car_model
   belongs_to :factory_stock, optional: true
   belongs_to :store_stock, optional: true
